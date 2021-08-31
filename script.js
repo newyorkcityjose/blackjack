@@ -56,7 +56,8 @@ const deal = document.querySelector('.deal-card')
 
 deal.addEventListener('click', function(){
 
-  return cardClick()
+  cardClick()
+  arrSum()
 })
 
 function cardClick(){
@@ -67,10 +68,15 @@ function cardClick(){
   console.log(arr)
   return arr;
 }
+function arrSum(){
+  let sum = arr.reduce((a, b) => {return Number(a) + Number(b)}, 0)
+  console.log(sum)
+
+}
 function displayPoint(){
   let cardpoint = cardClick()
-  // let arr = []
-  // arr.push(cardpoint)
-  // console.log(arr)
+  console.log(cardpoint)
+
 }
+
 displayPoint()
