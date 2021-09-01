@@ -113,8 +113,10 @@ stand.addEventListener('click', function(){
   computerCard.innerHTML = 'Computer score '+ sumComputer;
   if(sum > sumComputer){
     console.log('you won!')
+    playerCard.innerHTML = "You Win!"
   }else{
     console.log('you lose!')
+    playerCard.innerHTML = "You Lose!"
   }
 })
 
@@ -126,15 +128,9 @@ function cardPlayerDeal(cardPick) {
   return arrplayer;
 }
 
-function cardComputerDeal() {
-  let cardPick = cardhandleComputer();
-  playerCard.innerHTML = cardPick;
-  arrplayer.push(blackjackCard(cardPick));
-  console.log(arrplayer);
-  return arrplayer;
-}
-function arrSumPlayer(sum) {
-  return sum.reduce((a, b) => {
+
+function arrSumPlayer(sumArray) {
+  return sumArray.reduce((a, b) => {
     return Number(a) + Number(b);
   }, 0);
 }
