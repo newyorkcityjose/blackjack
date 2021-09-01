@@ -40,7 +40,6 @@ function cardhandlePlayer() {
   return fresa[randomCard];
 }
 
-
 function blackjackCard(cardPoints) {
   if (
     cardPoints[0] == 1 ||
@@ -54,9 +53,6 @@ function blackjackCard(cardPoints) {
     return cardPoints[0];
   }
 }
-let arrplayer = [];
-// let cardvaluePlayer = blackjackCard(cardhandlePlayer());
-// let cardvalueComputer = blackjackCard(cardhandleComputer());
 
 const playerCard = document.querySelector('.show-player-card');
 const playerPoints = document.querySelector('.show-player-points');
@@ -66,9 +62,11 @@ const stand = document.querySelector('.stand');
 const gameOver = document.querySelector('.game-over');
 
 let sum = 0;
+let sumComputer = 0;
+let arrplayer = [];
 let arr = [];
 let arrComputer = [];
-let sumComputer = 0;
+
 deal.addEventListener('click', function () {
   let cardPlayer = cardhandlePlayer();
   let cardComputer = cardhandlePlayer();
@@ -79,24 +77,25 @@ deal.addEventListener('click', function () {
   arrComputer.push(computerView);
   arr.push(playerView);
   sum = arrSumPlayer(arr);
+  playerPoints.innerHTML = sum;
   sumComputer = arrSumPlayer(arrComputer);
   // console.log(arr)
   console.log(sumComputer);
   console.log(arrComputer);
   if (sum > 21) {
+    playerPoints.innerHTML = 'Bust';
     console.log('Over 21');
     deal.style.display = 'none';
-    playerPoints.innerHTML = 'Bust';
     stand.style.display = 'none';
     gameOver.style.display = 'block';
   }
   if (sum === 21) {
-    playerPoints.innerHTML = 'You Win';
+    playerPoints.innerHTML = 'You Win!';
     gameOver.style.display = 'block';
     stand.style.display = 'none';
-  } else {
-    playerPoints.innerHTML = sum;
-  }
+    deal.style.display = 'none';
+  } 
+
 });
 gameOver.style.display = 'none';
 stand.addEventListener('click', function () {
@@ -158,4 +157,3 @@ function displayPoint() {
   let computerPoints = cardComputerDeal();
   console.log(playerPoints);
 }
-

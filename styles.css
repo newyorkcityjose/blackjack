@@ -10,3 +10,17 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.btn{
+  padding: 7px;
+  margin: 10px;
+  background: purple;
+  color: white;
+
+}
+
+.show-player-points{
+  margin: 10px;
+  font-size: 30px;
+
+}
