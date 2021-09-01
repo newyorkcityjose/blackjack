@@ -32,12 +32,12 @@ function shuffleDeck(shuffle) {
     shuffle[i] = shuffle[random];
   }
 }
-function shuffleDeckComputer(shufflecard) {
-  for (let i = 0; i < 52; i++) {
-    let random = Math.floor(Math.random() * 52);
-    shufflecard[i] = shufflecard[random];
-  }
-}
+// function shuffleDeckComputer(shufflecard) {
+//   for (let i = 0; i < 52; i++) {
+//     let random = Math.floor(Math.random() * 52);
+//     shufflecard[i] = shufflecard[random];
+//   }
+// }
 
 function cardhandlePlayer() {
   let fresa = card();
@@ -45,14 +45,15 @@ function cardhandlePlayer() {
   let randomCard = Math.floor(Math.random() * 52);
   return fresa[randomCard];
 }
-function cardhandleComputer() {
-  let fresa = card();
-  shuffleDeck(fresa);
-  let randomCard = Math.floor(Math.random() * 52);
-  return fresa[randomCard];
-}
-console.log(cardhandlePlayer())
-console.log(cardhandleComputer())
+// console.log(cardhandlePlayer())
+// function cardhandleComputer() {
+//   let berry = card();
+//   shuffleDeck(berry);
+//   let randomCard = Math.floor(Math.random() * 52);
+//   return berry[randomCard];
+// }
+
+// console.log(cardhandleComputer());
 
 function blackjackCard(cardPoints) {
   if (
@@ -67,46 +68,60 @@ function blackjackCard(cardPoints) {
     return cardPoints[0];
   }
 }
-let arr = [];
-let cardvaluePlayer = blackjackCard(cardhandlePlayer());
-let cardvalueComputer = blackjackCard(cardhandleComputer());
+let arrplayer = [];
+// let cardvaluePlayer = blackjackCard(cardhandlePlayer());
+// let cardvalueComputer = blackjackCard(cardhandleComputer());
 
 const playerCard = document.querySelector('.show-player-card');
 const playerPoints = document.querySelector('.show-player-points');
 const computerCard = document.querySelector('.show-computer-card');
 const deal = document.querySelector('.deal-card');
-
+let arr = []
 deal.addEventListener('click', function () {
-  cardPlayerDeal();
-  arrSum();
-  let check = arrSum();
-  if (check > 21) {
+  let cardPlayer = cardhandlePlayer()
+  console.log(cardPlayer);
+
+  let view = blackjackCard(cardPlayer)
+  // playerPoints.innerHTML = view
+  arr.push(view)
+  let sum = arrSumPlayer(arr)
+  console.log(sum)
+
+  if (sum > 21) {
     console.log('Over 21');
+    deal.style.display = 'none';
+    playerPoints.innerHTML = "Bust"
   } else {
-    playerPoints.innerHTML = check;
+    playerPoints.innerHTML = sum;
   }
 });
 
-function cardPlayerDeal() {
-  let cardPick = cardhandlePlayer();
-  playerCard.innerHTML = cardPick;
-  arr.push(blackjackCard(cardPick));
-  console.log(arr);
-  return arr;
+function cardPlayerDeal(cardPick) {
+  cardPick = cardhandlePlayer();
+  // playerCard.innerHTML = cardPick;
+  arrplayer.push(blackjackCard(cardPick));
+  console.log(arrplayer);
+  return arrplayer;
 }
+
 function cardComputerDeal() {
   let cardPick = cardhandleComputer();
   playerCard.innerHTML = cardPick;
-  arr.push(blackjackCard(cardPick));
-  console.log(arr);
-  return arr;
+  arrplayer.push(blackjackCard(cardPick));
+  console.log(arrplayer);
+  return arrplayer;
 }
-function arrSum() {
-  let sum = arr.reduce((a, b) => {
+function arrSumPlayer(sum) {
+  return sum.reduce((a, b) => {
+    return Number(a) + Number(b);
+  }, 0);
+}
+function arrSumComputer() {
+  let sumComputer = arr.reduce((a, b) => {
     return Number(a) + Number(b);
   }, 0);
   console.log(sum);
-  return sum;
+  return sumComputer;
 }
 function displayPoint() {
   let playerPoints = cardPlayerDeal();
@@ -114,4 +129,4 @@ function displayPoint() {
   console.log(playerPoints);
 }
 
-displayPoint();
+// displayPoint();
