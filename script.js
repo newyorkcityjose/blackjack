@@ -76,16 +76,23 @@ const playerCard = document.querySelector('.show-player-card');
 const playerPoints = document.querySelector('.show-player-points');
 const computerCard = document.querySelector('.show-computer-card');
 const deal = document.querySelector('.deal-card');
+const stand = document.querySelector('.stand');
 let arr = []
+let arrComputer = []
 deal.addEventListener('click', function () {
   let cardPlayer = cardhandlePlayer()
-  console.log(cardPlayer);
+  let cardComputer = cardhandlePlayer()
 
-  let view = blackjackCard(cardPlayer)
-  // playerPoints.innerHTML = view
-  arr.push(view)
+
+  let playerView = blackjackCard(cardPlayer)
+  let computerView = blackjackCard(cardComputer)
+
+  arrComputer.push(computerView)
+  arr.push(playerView)
   let sum = arrSumPlayer(arr)
+  let sumComputer = arrSumPlayer(arrComputer)
   console.log(sum)
+  console.log(arrComputer)
 
   if (sum > 21) {
     console.log('Over 21');
