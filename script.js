@@ -32,12 +32,6 @@ function shuffleDeck(shuffle) {
     shuffle[i] = shuffle[random];
   }
 }
-// function shuffleDeckComputer(shufflecard) {
-//   for (let i = 0; i < 52; i++) {
-//     let random = Math.floor(Math.random() * 52);
-//     shufflecard[i] = shufflecard[random];
-//   }
-// }
 
 function cardhandlePlayer() {
   let fresa = card();
@@ -45,15 +39,7 @@ function cardhandlePlayer() {
   let randomCard = Math.floor(Math.random() * 52);
   return fresa[randomCard];
 }
-// console.log(cardhandlePlayer())
-// function cardhandleComputer() {
-//   let berry = card();
-//   shuffleDeck(berry);
-//   let randomCard = Math.floor(Math.random() * 52);
-//   return berry[randomCard];
-// }
 
-// console.log(cardhandleComputer());
 
 function blackjackCard(cardPoints) {
   if (
@@ -102,6 +88,12 @@ deal.addEventListener('click', function () {
     deal.style.display = 'none';
     playerPoints.innerHTML = 'Bust';
     stand.style.display = 'none';
+    gameOver.style.display = 'block';
+  }
+  if (sum === 21) {
+    playerPoints.innerHTML = 'You Win';
+    gameOver.style.display = 'block';
+    stand.style.display = 'none';
   } else {
     playerPoints.innerHTML = sum;
   }
@@ -112,18 +104,27 @@ stand.addEventListener('click', function () {
   playerPoints.innerHTML = 'Player score ' + sum;
   computerCard.innerHTML = 'Computer score ' + sumComputer;
 
-  if (sum > sumComputer || sumComputer < 21) {
-    console.log('you won!');
+  if (sum > sumComputer) {
+    console.log(sum + ' sum ' + sumComputer + ' sumComputer');
     playerCard.innerHTML = 'You Win!';
     gameOver.style.display = 'block';
     stand.style.display = 'none';
-  } else if (sum === sumComputer) {
+  }
+  if (sum === sumComputer) {
     playerCard.innerHTML = 'Draw';
     stand.style.display = 'none';
     gameOver.style.display = 'block';
-  } else {
+  }
+  if (sum < sumComputer) {
+    console.log(sum + ' sum ' + sumComputer + ' sumComputer');
     console.log('you lose!');
     playerCard.innerHTML = 'You Lose!';
+    gameOver.style.display = 'block';
+    stand.style.display = 'none';
+  }
+  if (sumComputer > 21) {
+    console.log(sum + ' sum ' + sumComputer + ' sumComputer');
+    playerCard.innerHTML = 'You Win!';
     gameOver.style.display = 'block';
     stand.style.display = 'none';
   }
@@ -158,4 +159,3 @@ function displayPoint() {
   console.log(playerPoints);
 }
 
-// displayPoint();
